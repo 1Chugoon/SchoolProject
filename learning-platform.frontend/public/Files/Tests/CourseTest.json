@@ -1,0 +1,25 @@
+{
+"courseInfo": {
+    "name": "FirstCourse",
+    "rating": "4.5",
+    "author": "Chugoon"
+  },
+"authorOfCourse":{
+    "name":"Chugoonchik",
+    "role": "web-developer",
+    "description": "я уебан",
+    "author":{
+      "rating":"",
+      "students":"",
+      "courses":""
+    },
+    "achievements":["Долбаёб", "Хуесос"]
+  },
+"whatLearn":["HTML", "CSS", "JavaScript", "React", "Node.js"],
+"tags":["Web", "Development","Programming Language"],
+"description":"zxcdnsadansdoh",
+"buyCardDescription":{
+  "Price":"Бесплатно",
+  "Descripton":"Это невероятный курс в нём вы научитесь многому:\nничему"
+}
+}

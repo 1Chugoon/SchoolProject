@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Egoist",
+    "discription": "Solo Ego Legend",
+    "rating":"3.6",
+    "price":"Бесплатно",
+    "tags":[
+      "Manipulate","Skam"
+    ]
+  },
+  {
+    "name": "Web-development",
+    "discription": "For beginners",
+    "rating":"4.8",
+    "price": "500₺",
+    "tags":[
+      "Web", "Development"
+    ]
+  }
+]
