@@ -12,7 +12,7 @@ const toggleRoot = () =>
 
 const addModule = async (title) => {
   await axios.post(`${config.BaseURL}/courses/${root.Id}/modules`, { title }, {withCredentials:true})
-  .catch(toast.error("Ошибка"));
+  .catch(()=>toast.error("Ошибка"));
   
   await refresh();
   /*setRoot(prev => ({

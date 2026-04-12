@@ -29,7 +29,9 @@ const saveChanges = () =>{
     "newPassword": newPassword,
     "newEmail": email
   },
-{withCredentials:true}).catch(()=>toast.error("Неверные данные"))
+  {withCredentials:true})
+  .then(()=> toast.success("Успешно изменено"))
+  .catch(()=>toast.error("Неверные данные"))
  }catch{
   toast.error("Несовпадение паролей")
  }
@@ -38,8 +40,8 @@ const saveChanges = () =>{
     <div className="page-root page-centered-column">
 
       <header className="page-header">
-        <h2 className="header-title">Security</h2>
-        <span className="header-subtitle">Защити свой профиль</span>
+        <h2 className="header-title">Безопасность</h2>
+        <span className="header-subtitle"></span>
       </header>
 
       <div className="page-body">
@@ -53,9 +55,9 @@ const saveChanges = () =>{
         <div className="controls-column">
           <div className="basics">
             <span>Password:</span>
-            <InputForm TextPlaceholder={"New Password"} zstyle={"mini-input"} funct={setNewPassword}/>
-            <InputForm TextPlaceholder={"Re-type new Password"} zstyle={"mini-input"} funct={setRNewPassword}/>
-            <InputForm TextPlaceholder={"Old password"} zstyle={"mini-input"} funct={setOldPassword}/>
+            <InputForm TextPlaceholder={"New Password"} zstyle={"mini-input"} funct={setNewPassword} type={"password"}/>
+            <InputForm TextPlaceholder={"Re-type new Password"} zstyle={"mini-input"} funct={setRNewPassword} type={"password"}/>
+            <InputForm TextPlaceholder={"Old password"} zstyle={"mini-input"} funct={setOldPassword} type={"password"}/>
           </div>
           <MainBtns Style={"purple-btn"} Text={"Save"} Height={"40px"} Width={"100px"} Funct={saveChanges}/>
         </div>

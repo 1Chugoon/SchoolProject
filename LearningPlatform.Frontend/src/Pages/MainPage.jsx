@@ -12,7 +12,7 @@ function MainPage() {
   useEffect(() => {
     axios
       .get(config.BaseURL+"/courses")
-      .then(res => setCourses(res.data))
+      .then(res => {setCourses(res.data)})
       .catch(() => setError("Ошибка запроса"));
   }, []);
 

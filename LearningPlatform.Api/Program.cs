@@ -25,6 +25,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Minio;
+using Minio.DataModel.Args;
 using System.Net.Mime;
 using System.Security.Claims;
 using System.Text;
@@ -121,12 +122,15 @@ var minioAccessKey = config["Minio:AccessKey"] ?? "admin";
 var minioSecretKey = config["Minio:SecretKey"] ?? "admin123";
 var minioUseSsl = bool.TryParse(config["Minio:UseSsl"], out var sslVal) && sslVal;
 
-services.AddSingleton<IMinioClient>(_ =>
-    new MinioClient()
+
+
+var minioClient = new MinioClient()
         .WithEndpoint(minioEndpoint)
         .WithCredentials(minioAccessKey, minioSecretKey)
         .WithSSL(minioUseSsl)
-        .Build());
+        .Build();
+
+services.AddSingleton<IMinioClient>(minioClient);
 #endregion
 
 #region CORS from configuration or sensible defaults
@@ -212,6 +216,14 @@ app.UseSwaggerUI();
 
 
 //app.UseHttpsRedirection();
+
+bool exists = await minioClient.BucketExistsAsync(
+    new BucketExistsArgs().WithBucket("files")
+);
+if (!exists)
+    await minioClient.MakeBucketAsync(
+        new MakeBucketArgs().WithBucket("files")
+    );
 
 #region Centralized exception -> status code mapping + ProblemDetails-like response
 app.UseExceptionHandler(errApp =>
@@ -335,7 +347,8 @@ app.MapGet("/me", [Authorize] async (
     {
         me.Id,
         me.Name,
-        Role = me.Role.ToString()
+        Role = me.Role.ToString(),
+        me.Description
     });
 });
 #endregion
@@ -350,7 +363,8 @@ usersGroup.MapGet("/{id:guid}", async (Guid id, IUserRepository users) =>
     {
         us.Id,
         us.Name,
-        Role = us.Role.ToString()
+        Role = us.Role.ToString(),
+        us.Description
     });
 });
 #endregion

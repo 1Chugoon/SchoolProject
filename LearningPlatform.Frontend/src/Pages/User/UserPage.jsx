@@ -76,14 +76,14 @@ useEffect(() => {
         </div>
       </div>
       <div className="user-info-container">
-        <img src={photo} alt="avatar"/>
+        <img src={photo}/>
         {String(me?.Id) === String(id) && (
     <MainBtns Text="Редактировать" Style="null-btn" NavigateTo="/settings/profile" />)}
       </div>
       {console.log(`me:${me?.Id}, id:${id}`)}
 
       <div className="user-courses-section">
-        <h2 className="user-courses-title">Courses</h2>
+        <h2 className="user-courses-title">Курсы</h2>
         <ul className="courses-list">
           {userCourses.map((item,index)=>(
           <li key={index}>

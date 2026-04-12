@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
 }
-body{
+html,body{
   font-family: var(--font-stack-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -12,6 +12,7 @@ body{
   margin: 0;
   color: #1c1d1f;
   line-height: 1.5;
+  min-height: 100vh;
 }
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
@@ -24,16 +25,16 @@ p, li, span {
   word-break: break-word;
 }
 #root{
-  min-height: 100vh;
   margin: 0;  
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 .App{
-  height: 100vh;
   margin: 0;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 :root{
   --font-stack-text: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont,
@@ -63,6 +64,7 @@ p, li, span {
   background-color: white;
   border-bottom: 1px solid #ddd;
   font-family: Arial, sans-serif;
+  z-index: 1;
 }
 
 /*Header*/
@@ -73,8 +75,8 @@ p, li, span {
   justify-content: space-between;
   padding: 8px 16px;
   background-color: white;
-  border-bottom: 1px solid #ddd;
-  font-family: var(--font-family-inter)
+  font-family: var(--font-family-inter);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 .logo {
   font-weight: var(--default-font-weight);
@@ -185,14 +187,14 @@ p, li, span {
   height: 50px; 
   border: 1px solid black;
   border-radius: 15px;
-  font-size: 18px;
+  font-size: 16px;
+  font-family: var(--font-family-arial);
   text-align: center; 
   outline: none;
   transition: border 0.2s ease;
   margin: 10px;
 }
 .input::placeholder {
-  text-transform: uppercase;
   letter-spacing: 0px;
   color: black;
   font-weight: 100;
@@ -267,7 +269,7 @@ p, li, span {
 .course-buy-card {
   width: 340px;
   background-color: white;
-  border: 1px solid #ccc;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   border-radius: 6px;
   padding: 24px;
   display: flex;
@@ -343,27 +345,25 @@ p, li, span {
 }
   /*Main*/
 .container-main-page-course{
-  margin-inline: auto;
+  /*margin-inline: auto;
   max-inline-size: 73.75rem ;
+  min-width: 60rem*/
+  max-width: 1200px;
   padding-top: 2.8rem;
-  min-width: 60rem
-}
-.container-main-page-content{
-  margin-inline-start: 48px;
-  margin-inline-end: 48px;
+  margin: 0 auto;
 }
 .container-main-page-content > div{
   margin-bottom: 30px;
   width: 60%;
 }
 .container-main-page-course h2{
-  margin-bottom: 15px;
   font-style: var(--font-stack-text);
   font-weight: 600;
 }
 .what-you-learn-module{
   display: flex;
   justify-content: space-between;
+  margin-bottom: 25px;
 }
 
 /*Tags*/
@@ -393,7 +393,10 @@ p, li, span {
 
 /*lesson panel*/
 .lesson-panel-module{
+  margin: 5px 0;
   font-family: var(--font-stack-text);
+  box-shadow: 0 10px 30px rgba(138, 43, 226, 0.1);
+  border-left: 4px solid var(--purple-btn-style-background-hover);
 }
 .lesson-panel-module span{
   padding-right: 5px;
@@ -402,7 +405,7 @@ p, li, span {
   display: flex;
   padding: 10px 5px;
   align-items: center;
-  background-color: var(--neutral-color-gray);
+  background-color: #FFFFFF;
   cursor: pointer;
   margin-bottom: 1px;
   font-size: 0.9rem;
@@ -421,7 +424,6 @@ p, li, span {
   margin: 15px 0px;
 }
 .course-content-list-and-btns{
-  background-color: var(--second-neutral-color-gray);
   padding: 1px 1px 0.1px 1px;
 }
 /*descriptons course*/
@@ -459,6 +461,9 @@ p, li, span {
 .author-image-and-stats{
   margin-top: 10px;
   display: flex;
+}
+.author-image-and-stats img{
+  box-shadow: 0 10px 30px rgba(153, 61, 240, 0.1)
 }
 /*Rating*/
 .rating-card{
@@ -590,7 +595,7 @@ p, li, span {
 }
 .mini-input{
   max-width: 500;
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 5px;
   border: 1px solid #adadad;
   text-align: start;
@@ -604,7 +609,7 @@ p, li, span {
 .text-area{
   max-width: 500px;
   height: 100px;
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 5px;
   border: 1px solid #adadad;
   text-align: start;
@@ -612,7 +617,7 @@ p, li, span {
   margin: 8px 0;
   white-space: pre-wrap;
   resize: none;
-  font-family: monospace;
+  font-family: var(--font-family-arial);
   overflow: hidden;
   outline: none;
 }
@@ -677,7 +682,9 @@ p, li, span {
 }
 .main-page .lessons li{
   list-style: none;
-  margin: 5px 0;
+  padding: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border-radius: 15px
 }
 .main-page .lessons{
   align-items: center;
@@ -688,7 +695,6 @@ p, li, span {
 .main-page .lessons > ul{
   padding: 5px;
   min-width: 550px;
-  border: 1px solid rgba(0, 0, 0, 0.075);
 }
 
 .mini-user > img{
@@ -764,17 +770,17 @@ p, li, span {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: rgba(98, 0, 255, 0.009);
 }
 
 .learn-page-body {
   display: flex;
   flex: 1;
+  height: 100%;
 }
 
 /* ===== Header ===== */
 .learn-page header {
-  border: 1px solid var(--purple-border-style-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   padding: 15px;
   display: flex;
   align-items: center;
@@ -783,22 +789,26 @@ p, li, span {
 
 /* ===== Левая панель (desktop) ===== */
 .left-panel {
+  display: flex;
   width: 250px;
   flex-shrink: 0;
   overflow-y: auto;
-  background-color: #fff;
-  border-right: 1px solid var(--purple-border-style-color);
+  position: sticky;
+  top:30px;
 }
 
 .left-panel ul {
-  margin: 0;
+  margin-top: 15px;
   padding: 0;
   list-style: none;
 }
 
 .left-panel li {
+  border-radius: 15px;
+  box-shadow:
+    0px 2px 4px rgba(0, 0, 0, 0.05),
+    0px 10px 20px rgba(0, 0, 0, 0.03);
   display: flex;
-  border: 1px solid var(--purple-border-style-color);
   border-radius: 5px;
   margin: 5px;
   background-color: #fff;
@@ -806,10 +816,9 @@ p, li, span {
 
 /* ===== Основной контент ===== */
 .learn-page .main-info {
-  display: flex;
-  flex-direction: column;
   flex: 1;
-  min-width: 0; /* ВАЖНО для flex */
+  min-width: 0;
+  min-height: 0; /* КРИТИЧНО для flex */
   overflow-y: auto;
 }
 .learn-page .bottom-area > .main-btn{
@@ -879,6 +888,7 @@ p, li, span {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
+    height: 100%;
   }
 
   .left-panel.mobile-open {
@@ -903,7 +913,7 @@ p, li, span {
 /*list on lesson*/
 .list-on-lesson{
   flex: 1;
-  padding: 5px;
+  padding: 15px;
 }
 .list-on-lesson .main-info{
   display: flex;
@@ -912,7 +922,6 @@ p, li, span {
   flex: 1;
 }
 .list-on-lesson .list-lessons > ul > div{
-  border: #1f1f203a solid 1px;
   border-radius: 5px;
   padding-left: 3px;
   margin: 5px 0;
@@ -1145,6 +1154,7 @@ p, li, span {
   .lesson-panel-module {
     padding: 0.25rem;
     font-size: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   }
 
   /* Footer */
@@ -1152,14 +1162,13 @@ p, li, span {
     gap: 8%;
     padding: 10px 12px;
     justify-content: center;
+    z-index: 1;
   }
 
   /* Ensure fixed dark header doesn't overlap content on mobile:
      make it non-fixed to avoid layout issues on small screens */
   .black-container-header {
-    position: static;
-    padding: 10px 12px;
-    width: 100%;
+    display: none;
   }
 
   /* Misc adjustments */
@@ -1244,7 +1253,7 @@ p, li, span {
 /* Photo page */
 .photo-page-main { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; padding: 0 10%; gap: 16px; }
 .photo-preview-wrap { width: 100%; }
-.photo-preview-inner { border: 1px solid rgba(37, 37, 37, 0.541); padding: 10px; display: flex; justify-content: center; }
+.photo-preview-inner {padding: 10px; display: flex; justify-content: center; }
 .image-preview img { width: 200px; height: auto; border-radius: 10px; }
 .image-placeholder { width: 200px; height: 200px; background: #f6f7f9; border-radius: 6px; }
 
@@ -1254,13 +1263,13 @@ p, li, span {
 
 /* CourseCard */
 .course-card { padding-bottom: 1.6rem; display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
-.course-card img { margin-right: 1rem; border-radius: 5%; width: 220px; height: auto; max-width: 40%; object-fit: cover; border:1px solid var(--neutral-color-gray); aspect-ratio: 16/9; }
+.course-card img { margin-right: 1rem; border-radius: 5%; width: 220px; height: auto; max-width: 40%; object-fit: cover; aspect-ratio: 16/9; }
 .course-card-content { display: flex; flex-direction: column; padding-right: 1.25rem; position: relative; flex: 1; min-width: 0; }
 .tag-list { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 6px 0; }
 .tag-list-item { list-style: none; margin: 0; }
 .rating-row { display: flex; font-size: 1.05rem; align-items: center; gap: 8px; margin-top: 8px; }
 .rating-value { margin-right: 5px; font-weight: 600; }
-.price-badge { position: absolute; top: 8px; right: 10px; text-align: end; background: transparent; padding: 2px 6px; border-radius: 4px; }
+.price-badge { position: absolute; top: 8px; right: 10px; text-align: end; background: transparent; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
 
 /* MainPage select */
 .select-filter { padding: 8px; border-radius: 6px; }
@@ -1314,12 +1323,12 @@ p, li, span {
   }
   .black-container-content p {
     font-size: 0.95rem;
-    margin-bottom: 6px;
+    margin: 16px 0 ;
   }
   .black-container-content h1 {
     font-size: 1.6rem;
     line-height: 1.2;
-    margin: 0 0 8px;
+    margin: 12px 0;
     word-break: break-word;
   }
 
@@ -1383,7 +1392,6 @@ p, li, span {
     align-items: stretch;
     padding: 12px;
     border-radius: 10px;
-    border: 1px solid rgba(0,0,0,0.06);
     background: #fff;
   }
   .course-card img {
@@ -1395,10 +1403,7 @@ p, li, span {
   }
   .course-card-content { padding-right: 0; }
 
-  /* Reduce large margins from other rules that push content down */
-  .container-main-page-course,
-  .main-page,
-  .edit-course-box { padding-top: 0; }
+
 
   /* Ensure header area not too tall on mobile */
   .black-container { padding-bottom: 8px; }
@@ -1531,7 +1536,6 @@ p, li, span {
   object-fit: cover;
   border-radius: 6px;
   margin-right: 1rem;
-  border: 1px solid var(--neutral-color-gray);
 }
 .main-page .lessons .course-card-content {
   flex: 1;

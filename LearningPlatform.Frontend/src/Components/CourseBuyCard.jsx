@@ -22,7 +22,7 @@ function CourseBuyCard({Price, Description, Id}) {
       <h3 className="course-buy-price">{Price}</h3>
       <div className="course-buy-btns">
         {/*<MainBtns Text={"Добавить в корзину"} Style={"purple-btn"}/>*/}
-        <MainBtns Text={"Купить сейчас"} Style={"null-btn"} Funct={Request}/>
+        <MainBtns Text={"Купить сейчас"} Style={"purple-btn"} Funct={Request}/>
       </div>
      {/*<p className="course-buy-text">Этот курс включает в себя:
         <span>{Description}</span>

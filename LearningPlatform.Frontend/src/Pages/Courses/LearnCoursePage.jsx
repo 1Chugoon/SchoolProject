@@ -183,7 +183,7 @@ const goToNextLesson = () => {
 
       <div className="bottom-area">
         <MainBtns
-          Style="null-btn"
+          Style="purple-btn"
           Height="50px"
           Width="100px"
           Text="Далее"

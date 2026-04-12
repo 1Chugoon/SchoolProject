@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { toast } from "react-toastify";
 
 import MainBtns from "../Components/Buttons/MainBtns";
@@ -9,42 +10,44 @@ import TitleText from "../Components/TextComponents/TitleText";
 import config from "../config.json"
 import axios from "axios";
 
-function RegisterPage() {
 
+function LoginPage({setAuth}) {
   const [email,setEmail] = useState();
   const [password, setPass] = useState();
-  const [name,setName] = useState();
 
-  
-  const  Request = async () =>{
-    try{
-      await axios.post(config.BaseURL +"/auth/register", {
-        email,
-        password,
-        name
-      },{withCredentials: true})
+  const Request = async () =>{
+    try{ 
+    await axios.post(config.BaseURL +"/auth/login", {
+      email,
+      password
+    },{withCredentials: true})
 
-      toast.success("Успешная регистрация")
+    setAuth(true);
+    toast.success("Успешная авторизация")
   }
-    catch(err){
-    if (err.response?.status === 409) {
-      toast.error("Email уже используется");
-    }
+  catch(err){
     if (err.response?.status === 500){
       toast.error("Ошибка сервера");
     }
+    if(err.response?.status === 401){
+      toast.error("Невереный email или пароль")
+    }
+    if(err.response?.status === 404){
+      toast.error("Не найден пользователь");
+    }
   }
-}
+  }
+
+
   return (
     <>
-      <TitleText TextOnTitle={"Регистрация по эл. почте"} MarginOnBot={"20px"} LetterSpacing={"1px"}/>
-      <InputForm TextPlaceholder="Адрес электронной почты" funct={setEmail}/>
-      <InputForm TextPlaceholder={"Отображаемое имя"} funct={setName}/>
+      <TitleText TextOnTitle={"Выполните вход чтобы продолжить"} MarginOnBot={"20px"}/>
+      <InputForm TextPlaceholder="Email" funct={setEmail}/>
       <InputForm TextPlaceholder={"Пароль"} funct={setPass} type={"password"}/>
       <MainBtns 
         Style={"purple-btn"} 
         Text={"Продолжить"} 
-        Width={"90%"} 
+        Width={"80%"} 
         Height={56} 
         FontSize={"24px"} 
         FontWeight={"400"} 
@@ -53,12 +56,12 @@ function RegisterPage() {
         Funct={Request} 
       />
       <AdditionalInformation 
-        FirstText={"Есть аккаунт?"} 
-        SecondText={"Войти"} 
-        NavigateTo={"/join/login"}
+        FirstText={"Не зарегистрированы?"} 
+        SecondText={"Регистрация"} 
+        NavigateTo={"/join/register"}
       />
     </>
   );
 }
 
-export default RegisterPage;
+export default LoginPage;

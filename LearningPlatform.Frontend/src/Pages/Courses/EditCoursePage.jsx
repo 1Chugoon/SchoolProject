@@ -42,7 +42,6 @@ function EditCoursePage() {
         leftListRef.current.loadData(res.data);
         WhatLearn.current.loadData(res.data?.WhatLearn);
         setCourse(res.data);
-        console.log(res.data);
         setTitle(res.data?.Title);
         setDescription(res.data?.Description)
       })
@@ -131,8 +130,8 @@ function EditCoursePage() {
       }}
     )
     .then(()=> delay(100))
-    .then(toast.success("успешно сохранено"))
-    .catch((e)=>{toast.error("ошибка сохранения"); console.log(e)})
+    .then(()=>toast.success("успешно сохранено"))
+    .catch((e)=>{toast.error("ошибка сохранения")})
 }
   return (
     <div>

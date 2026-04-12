@@ -30,7 +30,6 @@ import LearnCoursePage from "./Pages/Courses/LearnCoursePage";
 import CoursesUsPage from "./Pages/User/CoursesUsPage";
 import CreatedCoursesPage from "./Pages/User/CreatedCoursesPage";
 import ConfirmEmailPage from "./Pages/ConfirmEmailPage";
-import Background from "./Files/Background.png"
 
 function App() {
   const location = useLocation();
@@ -55,17 +54,7 @@ function App() {
   return (
     <div className="App">
       {!hideHeader && <Header isAuth={isAuth}/>}
-      <div style={{flex:"1"}}>
-          <div style={{
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundImage: `url(${Background})`,
-    opacity: 0.1,
-    zIndex: 0
-  }} />
+      <div style={{flex:"1", height:"100vh"}}>
           <div style={{position: 'relative',zIndex:"1",height:"100%",width:"100%"}}>
             <Routes>
               <Route path="/" element={<MainPage/>}/>

@@ -31,7 +31,7 @@ function ProfilePage() {
   const handlesave = ()=>{
     try{
 
-    if(text.length > maxLength)throw new Error("Слишком длинный текст")
+    /*if(text.length > maxLength)throw new Error("Слишком длинный текст")*/
 
     axios.put(`${config.BaseURL}/users/${user.Id}`,{
       "name":name,
@@ -48,26 +48,26 @@ function ProfilePage() {
     <div className="page-root page-centered-column">
 
       <header className="page-header">
-        <h2 className="header-title">Profile</h2>
-        <span className="header-subtitle">Add info about yourself</span>
+        <h2 className="header-title">Профиль</h2>
+        <span className="header-subtitle"></span>
       </header>
 
       <div className="profile-container">
         <div className="basics">
-          <span>Basics:</span>
+          <span>Имя:</span>
           <InputForm TextPlaceholder={"Name"} zstyle={"mini-input"} defaultText={user?.Name} funct={setName}/> 
           {/*<InputForm TextPlaceholder={"LastName"} zstyle={"mini-input"}/>
           <InputForm TextPlaceholder={"Role"} zstyle={"mini-input"}/>*/}
         </div>
 
         <div className="biografy">
-          <span>Biografy:</span>
-          <textarea className="text-area" ref={textareaRef} placeholder="Biografy" onChange={(e) => setText(e.target.value)}/>
+          <span>Биография:</span>
+          <textarea className="text-area" ref={textareaRef} defaultValue={user?.Description} placeholder="Biografy" onChange={(e) => setText(e.target.value)}/>
         </div>
 
-        <div className="text-counter">
+        {/*<div className="text-counter">
           {text.length} / {maxLength}
-        </div>
+        </div>*/}
       </div>
 
       <div className="save-row">

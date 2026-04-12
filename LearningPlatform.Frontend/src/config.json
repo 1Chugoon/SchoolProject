@@ -1,5 +1,5 @@
 {
   "nameOfSite": "Home",
   "email": "chugoon090@gmail.com",
-  "BaseURL": "http://localhost:5000"
+  "BaseURL": "/api"
 }

@@ -8,6 +8,9 @@ import { toast } from 'react-toastify';
 
 
 export default function CreatedCoursesPage() {
+  
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 
   const [userCourses, setUserCourses] = useState(null);
   const [userId, setUserId] = useState(null);
@@ -32,7 +35,10 @@ export default function CreatedCoursesPage() {
     try{
       await axios
       .post(config.BaseURL + `/courses/${id}/publish`,{},{withCredentials:true})
+      .then(()=> delay(1000))
+      .then(() =>window.location.reload())
     }catch(e){
+      toast.error("Ошибка сервера")
     }
   }
 
@@ -59,6 +65,7 @@ export default function CreatedCoursesPage() {
         const fullCourses = await Promise.all(
           courseIds.map(async (cid, idx) => {
             if (!cid) return null;
+            const initialCourseData = coursesList[idx];
             try {
               //const r = await axios.get(`${config.BaseURL}/courses/${cid}`, { withCredentials: true });
 
@@ -77,7 +84,7 @@ export default function CreatedCoursesPage() {
                   
                 }
 
-              return { ...r.data, thumbnail };
+              return { ...initialCourseData, ...r.data, thumbnail };
             } catch (e) {
               // если получение полного курса упало — попытаемся использовать пришедший объект
               return typeof coursesList[idx] === 'object' ? coursesList[idx] : null;

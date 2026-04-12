@@ -58,7 +58,6 @@ function CoursePage() {
     })
     .catch((err) => {
       switch(err.response?.status){
-        case 404:toast.error("Изображение автора не найдено");break;
         case 500: toast.error("Ошибка сервера");break
       }
     });
@@ -138,18 +137,17 @@ function CoursePage() {
           <div className="author-description-module">
               <h2>Автор</h2>
               <div className="author-description-container">
-                <h3 className="author-name" style={{width:"max-content"}} onClick={()=>navigate(`/user/${course?.Author?.Id}`)}>{course?.Author.Name}</h3>
-                <h3 fontSize="1.4rem" style={{fontWeight:"100", fontFamily:"var(--font-stack-text)"}}>{course?.Author?.Role }</h3>
+                <h3 className="author-name" style={{width:"max-content"}} onClick={()=>navigate(`/user/${Author?.Id}`)}>{course?.Author.Name}</h3>
                 <div className="author-image-and-stats">
                   <img src={AuthorImage ?? defaultPhoto} alt="" width={"64"} height={"64"} style={{borderRadius:"50px",width:"6.4rem",height:"6.4rem", marginRight:"20px"}}></img>
-                  <ul>
+                  {/*<ul>
                     {course?.Author?.Achievements?.map((item,index)=>(
                       <li key={index}>{item}</li>
-                    ))}
-                  </ul>
+                    ))
+                  </ul>*/}
                 </div>
                 <div style={{margin:"16px 0"}}>
-                  <ShowText maxLength={200}  text={course?.Author?.Description}/>
+                  <ShowText maxLength={200}  text={Author?.Description}/>
                 </div>
               </div>
           </div>

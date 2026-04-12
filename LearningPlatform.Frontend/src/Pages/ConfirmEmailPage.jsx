@@ -106,7 +106,7 @@ export default function ConfirmEmailPage() {
           </p>
           <button
             className="primary-btn"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/join/login")}
           >
             Go to login
           </button>

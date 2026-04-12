@@ -1,13 +1,14 @@
+import { createPortal } from "react-dom";
+
 export default function ConfirmDialog({ open, onConfirm, onCancel, message }) {
   if (!open) return null;
 
   const isMobile = window.innerWidth <= 480;
 
-  return (
+  return createPortal(
     <div style={overlay}>
       <div style={{ ...modal, ...(isMobile ? modalMobile : {}) }}>
         <p style={text}>{message}</p>
-
         <div style={{ ...actions, ...(isMobile ? actionsMobile : {}) }}>
           <button style={cancelBtn} onClick={onCancel}>
             Отмена
@@ -17,7 +18,8 @@ export default function ConfirmDialog({ open, onConfirm, onCancel, message }) {
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
@@ -31,7 +33,7 @@ const overlay = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  zIndex: 9999
+  zIndex: 999999
 };
 
 const modal = {

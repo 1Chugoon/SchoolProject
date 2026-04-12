@@ -5,14 +5,14 @@ import config from "../../config.json"
 function Footer() {
   return (
     <footer className="footer">
-      <button className="icon-btns">
+      <a className="icon-btns" href = "https://github.com/1Chugoon/SchoolProject">
         <img src={GitHub} alt="Github" className="icons" />
         GitHub
-      </button>
-      <button className="icon-btns">
+      </a>
+      {/*<button className="icon-btns">
         <img src={email} alt="Email" className="icons"/>
         {config.email}
-      </button>
+      </button>*/}
     </footer>
   );
 }

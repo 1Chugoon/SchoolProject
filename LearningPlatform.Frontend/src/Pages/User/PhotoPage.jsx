@@ -52,27 +52,28 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   return (
     <div className="page-root page-centered-column">
       <header className="page-header">
-        <h2 className="header-title">Photo</h2>
-        <span className="header-subtitle">Add Photo</span>
+        <h2 className="header-title">Фото профиля</h2>
+        <span className="header-subtitle"></span>
       </header>
 
       <div className="photo-page-main">
         <div className="photo-preview-wrap">
           <div className="photo-preview-inner">
-            <div className="image-preview">
-              {image ? (
-                <img src={image} alt="preview" />
-              ) : (
-                <div className="image-placeholder"></div>
-              )}
-            </div>
+            <label htmlFor="InputImage">
+              <div className="image-preview">
+                {image ? (
+                  <img src={image} alt="preview" />
+                ) : (
+                  <div className="image-placeholder"></div>
+                )}
+              </div>
+            </label>
           </div>
         </div>
 
         <div className="photo-controls">
           <div className="file-input-row">
             <InputForm zstyle={"void"} type={"file"} TextPlaceholder={"image"} accept={"image/*"} Id={"InputImage"} funct={handleFileChange} />
-            <label htmlFor="InputImage" className="image-input">Загрузить картинку</label>
           </div>
           <div className="photo-save-row">
             <MainBtns Style={"purple-btn"} Text={"Сохранить"} Funct={savePhoto}/>

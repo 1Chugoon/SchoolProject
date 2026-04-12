@@ -36,6 +36,7 @@ function Header({isAuth}) {
         <img src={searchIcon} alt="search" className="search-icon" />
         <input type="text" placeholder="Поиск" className="search-input" />
       </div>*/}
+      <div><h4>Добро пожаловать на учебный сайт</h4></div>
       <div className="actions">
         {/*<button className="icon-btns shopping-cart-btn">
           <img src={cartIcon} alt="shopping-cart" className="icons shopping-cart-icon" onClick={() => navigate("/cart")} />
