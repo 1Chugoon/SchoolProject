@@ -184,7 +184,7 @@ p, li, span {
 /* Input */
 .input{
   width: 500px;
-  height: 50px; 
+  min-height: 50px; 
   border: 1px solid black;
   border-radius: 15px;
   font-size: 16px;

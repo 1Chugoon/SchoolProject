@@ -1,0 +1,63 @@
+
+services:
+
+  nginx:
+    image: nginx:alpine
+    container_name: lp_nginx
+    ports:
+     - "80:80"
+    volumes:
+        - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+        - frontend
+        - api
+    restart: unless-stopped    
+
+
+  frontend:
+    image: chugun1006/frontend  
+    expose:
+      - "3000"
+    restart: unless-stopped
+
+  api:
+    image: chugun1006/api  
+    expose:
+      - "8080"
+    env_file:
+      - .env
+    environment:
+      - ConnectionStrings__Default=Host=${DB_HOST};Port=${DB_PORT};Database=${DB_NAME};Username=${DB_USER};Password=${DB_PASSWORD}
+      - Minio__AccessKey=${MINIO_ROOT_USER}
+      - Minio__SecretKey=${MINIO_ROOT_PASSWORD}
+      - JWT__Key=${JWT_KEY} 
+      - Frontend__Origin=http://nginx
+      - Other__Email=${EMAIL}
+      - Other__Secret=${SECRET}
+    depends_on:
+      - postgres
+      - minio
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16
+    container_name: my_postgres
+    env_file:
+      - .env
+    volumes:
+      - learningplatform_pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  minio:
+    image: minio/minio
+    container_name: LP-minio
+    command: server /data --console-address ":9001"
+    env_file:
+      - .env
+    volumes:
+      - learningplatform_minio_data:/data
+    restart: unless-stopped
+
+volumes:
+  learningplatform_pgdata:
+  learningplatform_minio_data:

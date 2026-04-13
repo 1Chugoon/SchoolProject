@@ -54,8 +54,8 @@ function App() {
   return (
     <div className="App">
       {!hideHeader && <Header isAuth={isAuth}/>}
-      <div style={{flex:"1", height:"100vh"}}>
-          <div style={{position: 'relative',zIndex:"1",height:"100%",width:"100%"}}>
+      <div style={{flex:"1", height:"100vh", display:"flex"}}>
+          <div style={{position: 'relative',zIndex:"1",minHeight:"100%",minWidth:"100%"}}>
             <Routes>
               <Route path="/" element={<MainPage/>}/>
               <Route path="/join" element={<IdentificationPage/>}>

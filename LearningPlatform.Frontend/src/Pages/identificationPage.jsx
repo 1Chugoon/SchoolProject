@@ -9,7 +9,7 @@ function IdentificationPage() {
     <div className="image-wrapper">
       <img src={image} alt="" />
     </div>
-    <div className="content">
+    <div className="content" style={{height:"100%"}}>
       <Outlet/>
     </div>
   </div>

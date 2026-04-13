@@ -14,6 +14,7 @@ function CourseBuyCard({Price, Description, Id}) {
       switch(err.response?.status){
         case 409: toast.error("Курс уже куплен");break;
         case 500: toast.error("Ошибка сервера");break;
+        case 401: toast.error("Авторизуйтесь чтобы приобрести курс");break;
       }
     }
   }
