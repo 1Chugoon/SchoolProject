@@ -5,11 +5,11 @@ services:
     image: nginx:alpine
     container_name: lp_nginx
     ports:
-     - "80:80"
+    - "80:80"
+    - "443:443"
     volumes:
         - ./nginx.conf:/etc/nginx/nginx.conf
-        - ./certbot/www:/var/www/certbot
-        - ./certbot/conf:/etc/letsencrypt
+        - /etc/letsencrypt:/etc/letsencrypt
     depends_on:
         - frontend
         - api
@@ -37,7 +37,7 @@ services:
       - Minio__AccessKey=${MINIO_ROOT_USER}
       - Minio__SecretKey=${MINIO_ROOT_PASSWORD}
       - JWT__Key=${JWT_KEY} 
-      - Frontend__Origin=http://my-defense.ddns.net
+      - Frontend__Origin=https://my-defense.ddns.net
       - Other__Email=${EMAIL}
       - Other__Secret=${SECRET}
     depends_on:
