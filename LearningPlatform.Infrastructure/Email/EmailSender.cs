@@ -19,10 +19,20 @@ namespace LearningPlatform.Infrastructure.Email
 
             using var client = new SmtpClient();
 
-            await client.ConnectAsync("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-            await client.AuthenticateAsync(_config["Other:Email"]!, _config["Other:Secret"]!);
-            await client.SendAsync(email);
-            await client.DisconnectAsync(true);
+            try
+            {
+                await client.ConnectAsync("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                await client.AuthenticateAsync(_config["Other:Email"]!, _config["Other:Secret"]!);
+                await client.SendAsync(email);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                await client.DisconnectAsync(true);
+            }
         }
     }
 }

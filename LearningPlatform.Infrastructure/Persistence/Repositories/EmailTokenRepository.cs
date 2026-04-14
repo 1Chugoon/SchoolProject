@@ -19,6 +19,13 @@ namespace LearningPlatform.Infrastructure.Persistence.Repositories
             await _db.SaveChangesAsync(ct);
         }
 
+        public async Task DeleteByUserIdAsync(Guid userId, CancellationToken ct)
+        {
+            await _db.EmailConfirmationTokens
+        .Where(x => x.UserId == userId)
+        .ExecuteDeleteAsync(ct);
+        }
+
         public async Task<EmailConfirmationToken?> GetValidTokenAsync(
             Guid userId,
             string tokenHash,

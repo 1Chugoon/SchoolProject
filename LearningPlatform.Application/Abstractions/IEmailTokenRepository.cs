@@ -8,5 +8,6 @@ namespace LearningPlatform.Application.Abstractions
             Guid userId,
             string tokenHash,
             CancellationToken ct);
+        Task DeleteByUserIdAsync(Guid userId, CancellationToken ct);
     }
 }

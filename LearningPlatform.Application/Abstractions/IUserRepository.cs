@@ -11,5 +11,6 @@ namespace LearningPlatform.Application.Abstractions
         Task<User?> AddAsync(User user);
         Task AddAsync(User user, CancellationToken ct);
         Task SaveAsync(User user);
+        Task DeleteAsync(Guid id, CancellationToken ct);
     }
 }

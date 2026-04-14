@@ -47,12 +47,18 @@ namespace LearningPlatform.Application.UseCases.User
             var link = $"https://{domain}/confirm-email?userId={user.Id}&token={Uri.EscapeDataString(rawToken)}";
 
             var body = $"Здравствуйте!\r\n\r\nБлагодарим вас за регистрацию. Чтобы активировать ваш аккаунт и получить доступ ко всем функциям сервиса, пожалуйста, подтвердите свой адрес электронной почты, перейдя по ссылке ниже:\r\n\r\n {link}\r\n\r\nЕсли вы не регистрировались на нашем ресурсе, просто проигнорируйте это письмо.";
-            
 
-            await _emailSender.SendAsync(
-                user.Email,
-                "Confirm email",
-                body);
+
+            try
+            {
+                await _emailSender.SendAsync(user.Email, "Confirm email", body);
+            }
+            catch
+            {
+                await _users.DeleteAsync(user.Id, ct);
+                await _tokenRepo.DeleteByUserIdAsync(user.Id, ct);
+                throw;
+            }
 
             return user.Id;
         }

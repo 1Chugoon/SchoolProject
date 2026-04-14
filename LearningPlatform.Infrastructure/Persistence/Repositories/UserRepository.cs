@@ -50,5 +50,17 @@ namespace LearningPlatform.Infrastructure.Persistence.Repositories
         {
            return await _db.Users.FirstOrDefaultAsync(x => x.Id == id,ct);
         }
+
+        public async Task DeleteAsync(Guid id, CancellationToken ct)
+        {
+            var user = await _db.Users
+        .FirstOrDefaultAsync(x => x.Id == id, ct);
+
+            if (user == null)
+                return;
+
+            _db.Users.Remove(user);
+            await _db.SaveChangesAsync(ct);
+        }
     }
 }
